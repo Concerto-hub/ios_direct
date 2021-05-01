@@ -11,10 +11,9 @@ import SnapKit
 import PassKit
 import iOSDropDown
 
-class ViewController: UIViewController , UIScrollViewDelegate
+class ViewController: UIViewController , UIScrollViewDelegate, UITextFieldDelegate
 {
 
-    //@IBOutlet var transId: UITextField!
     
     @IBOutlet var amountField: UITextField!
     @IBOutlet var emailField: UITextField!
@@ -23,6 +22,7 @@ class ViewController: UIViewController , UIScrollViewDelegate
     @IBOutlet var countryField: UITextField!
     //@IBOutlet var actionField: UITextField!
     
+    @IBOutlet var transId: UITextField!
     @IBOutlet weak var actionDropDown: DropDown!
     
     @IBOutlet var trackIDField: UITextField!
@@ -54,8 +54,9 @@ class ViewController: UIViewController , UIScrollViewDelegate
     
     @IBOutlet var cardnumber: UITextField!
     @IBOutlet var expmonth: UITextField!
-    @IBOutlet var cvv: UITextField!
+    @IBOutlet var cvv: SDCTextField!
     @IBOutlet var expyear: UITextField!
+    @IBOutlet var cardholdername: UITextField!
     
     var addressHeightAnchor: NSLayoutConstraint? = nil
     var stateHeightAnchor: NSLayoutConstraint? = nil
@@ -111,26 +112,37 @@ class ViewController: UIViewController , UIScrollViewDelegate
         
         self.originalSize = self.tockenField.frame.height
         self.merchantIdentifier.isHidden=true
-        actionDropDown.optionArray=["Select Action","Purchase"," Pre Auth ","Capture ","Refund ","Void Refund",""," Tokenization "]
-       actionDropDown.optionIds = [0,1,4,12]
+        
+//        self.cvv.delegate = self
+//        self.cvv.maxLength = 3
+        
+        actionDropDown.optionArray=["Select Action","Purchase","Pre Auth ","Capture ","Refund ","Void Refund","Void Purchase ", "Void Pre Auth","Tokenization ","STC Pay"]
+       actionDropDown.optionIds = [0,1,4,5,2,6,3,9,12,13]
       
         actionDropDown.didSelect{(selectedText , index ,id) in
             self.actionCodeId=String(id)
-            if self.actionCodeId == "12"
-            {
-//              self.isTokenEnabled=true
-                self.enableTokenFields()
-                print("Tokeization enable")
-            }
-            else
+//            if self.actionCodeId == "12"
+//            {
+////              self.isTokenEnabled=true
+//                self.enableTokenFields()
+//                print("Tokeization enable")
+//            }
+//            else
+            if (self.actionCodeId == "5" || self.actionCodeId == "2" || self.actionCodeId == "6" || self.actionCodeId == "3" || self.actionCodeId == "9")
             {
 //              self.isTokenEnabled=false
-                self.disableTokenFieldsAction()
-                print("Tokeization disable")
+                self.disablerelativeTransn()
+                print("Relative disable")
+            }
+            else if (self.actionCodeId == "1" || self.actionCodeId == "4" || self.actionCodeId == "12") 
+
+            {
+                self.enablerelativeTransnData()
             }
         //self.actionField.text = "Selected String: \(selectedText) \n index: \(id)"
         }
         
+      
         
         cardOperdropDwn.optionArray=pickerData
         cardOperdropDwn.didSelect{(selectedText , index ,id) in
@@ -192,23 +204,35 @@ class ViewController: UIViewController , UIScrollViewDelegate
               // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
             NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//
+//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+//           // if keyboard size is not available for some reason, dont do anything
+//           return
+//        }
+//
+//      // move the root view up by the distance of keyboard height
+//      self.view.frame.origin.y = 0 - keyboardSize.height
+//    }
+//
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//      // move back the root view origin to zero
+//      self.view.frame.origin.y = 0
+//    }
+//
     @objc func keyboardWillShow(notification: NSNotification) {
-            
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
         }
-      
-      // move the root view up by the distance of keyboard height
-      self.view.frame.origin.y = 0 - keyboardSize.height
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
-      self.view.frame.origin.y = 0
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
-    
-    
     @IBAction func indexChanged(_ sender: Any) {
        let index =  topsegmentController.selectedSegmentIndex
         UIView.animate(withDuration: 0.3) {
@@ -223,7 +247,7 @@ class ViewController: UIViewController , UIScrollViewDelegate
             else
             {
                 self.merchantIdentifier.isHidden=false
-                self.disableTokenFieldsAction()
+               // self.disableTokenFieldsAction()
             }
             
             self.view.layoutIfNeeded()
@@ -278,7 +302,7 @@ class ViewController: UIViewController , UIScrollViewDelegate
                 self.presentAlert(resut: result)
                 return
             }
-            print("initialSDK")
+        
             self.navigationController?.pushViewController(nonNilController, animated: true)
         }
 
@@ -315,7 +339,7 @@ class ViewController: UIViewController , UIScrollViewDelegate
                 return
             }
         }
-        
+    
         isSucessStatus = false
         let floatAmount = Double(amountField.text ?? "0") ?? .zero
 
@@ -325,7 +349,7 @@ class ViewController: UIViewController , UIScrollViewDelegate
             request.merchantCapabilities = .capability3DS
 
             request.countryCode = countryField.text ?? ""
-            request.currencyCode = currencyField.text ?? ""
+        request.currencyCode = currencyField.text?.trimmingCharacters(in: .whitespaces) ?? ""
 
             request.paymentSummaryItems = [PKPaymentSummaryItem(label: " Test ",amount: NSDecimalNumber(floatLiteral: floatAmount) )]
         let controller = PKPaymentAuthorizationViewController(paymentRequest: request)
@@ -385,44 +409,67 @@ extension ViewController {
         else
         {
             isTokenEnabled = false
-            disableTokenFieldsAction()
+         //   disableTokenFieldsAction()
         }
     }
 
     
-    func disableTokenFieldsAction() {
-        print("enabl")
-
-
-        self.cityHeightAnchor?.constant = 0
-        self.addressHeightAnchor?.constant = 0
-        self.stateHeightAnchor?.constant = 0
-    
-        self.cityField.text = ""
-        self.countryField.text = ""
-        self.addressField.text = ""
-        self.stateField.text = ""
-        self.tockenField.text = ""
-        
-      //  self.cardTokenHeightAnchor?.constant = 0
-        
-        UIView.animate(withDuration: 0.5)
-        {
-            self.view.layoutIfNeeded()
-        }
-   }
+//    func disableTokenFieldsAction() {
+//        print("enabl")
+//
+//
+//        self.cityHeightAnchor?.constant = 0
+//        self.addressHeightAnchor?.constant = 0
+//        self.stateHeightAnchor?.constant = 0
+//
+//        self.cityField.text = ""
+//        self.countryField.text = ""
+//        self.addressField.text = ""
+//        self.stateField.text = ""
+//        self.tockenField.text = ""
+//
+//      //  self.cardTokenHeightAnchor?.constant = 0
+//
+//        UIView.animate(withDuration: 0.5)
+//        {
+//            self.view.layoutIfNeeded()
+//        }
+//   }
+    func disablerelativeTransn()
+    {
+        self.cardnumber.isHidden=true
+        self.cvv.isHidden=true
+        self.expmonth.isHidden=true
+        self.expyear.isHidden=true
+        self.addressField.isHidden=true
+        self.cityField.isHidden=true
+        self.zipField.isHidden=true
+        self.stateField.isHidden=true
+        self.cardholdername.isHidden=true
+    }
+    func enablerelativeTransnData()
+    {
+        self.cardnumber.isHidden=false
+        self.cvv.isHidden=false
+        self.expmonth.isHidden=false
+        self.expyear.isHidden=false
+        self.addressField.isHidden=false
+        self.cityField.isHidden=false
+        self.zipField.isHidden=false
+        self.stateField.isHidden=false
+        self.cardholdername.isHidden=false
+    }
     
     func enableTokenFields()
     {
-        self.cityHeightAnchor?.constant = self.originalSize
-        self.countryHeightAnchor?.constant = self.originalSize
-        self.addressHeightAnchor?.constant = self.originalSize
-        self.stateHeightAnchor?.constant = self.originalSize
-        self.cardTokenHeightAnchor?.constant = self.originalSize
-
-         UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        }
+        self.cardnumber.isHidden=false
+        self.cvv.isHidden=false
+        self.expmonth.isHidden=false
+        self.expyear.isHidden=false
+//        self.addressField.isHidden=true
+//        self.cityField.isHidden=true
+//        self.zipField.isHidden=true
+//        self.stateField.isHidden=true
     }
 }
 
@@ -431,33 +478,35 @@ extension ViewController: Initializer {
 
   func prepareModel() -> UWInitializer {
    
-        let model = UWInitializer.init(amount: amountField.text ?? "",
-                                       email: emailField.text ?? "",
-                                       zipCode: zipField.text ?? "",
-                                       currency: currencyField.text ?? "",
-                                       country: countryField.text ?? "" ,
+    var udff5=utf5.text
+        let model = UWInitializer.init(amount: amountField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  ?? "",
+                                       email: emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       zipCode: zipField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       currency: currencyField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       country: countryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "" ,
                                        actionCode: actionCodeId,
-                                       trackIdCode: trackIDField.text ?? "",
-                                       udf4: isApplePayPaymentTrxn ? "ApplePay" : "",
-                                       udf5:  isApplePayPaymentTrxn ? paymentString : "" ,
-//                                     udf5: paymentString,
-                                       address: addressField.text ,
+                                       trackIdCode: trackIDField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  ?? "",
+                                       udf1:utf1.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       udf2:utf2.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       udf3:utf3.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       udf4: isApplePayPaymentTrxn ? "ApplePay" : utf4.text?.trimmingCharacters(in: .whitespacesAndNewlines) ,
+                                       udf5:  isApplePayPaymentTrxn ? paymentString : udff5 as NSString? ,
+                                       address: addressField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  ,
                                        createTokenIsEnabled: isTokenEnabled,
-//                                     merchantIP: merchantField.text ?? "",
-                                       cardToken: tockenField.text,
+                                       cardToken: tockenField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ,
                                        cardOper: self.cardOperation ,
-                                       state: stateField.text ,
-                                       merchantidentifier: merchantIdentifier.text ?? "",
+                                       state: stateField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  ,
+                                       transid: transId.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       merchantidentifier: merchantIdentifier.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
                                        tokenizationType: "\(segmentController.selectedSegmentIndex)",
-                                       cardNumber: cardnumber.text ?? "",
-                                       cvv: cvv.text ?? "",
-                                       expMonth: expmonth.text ?? "",
-                                       expYear: expyear.text ?? ""
-                                       
-        
+                                       cardNumber: cardnumber.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       cvv: cvv.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       expMonth: expmonth.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       expYear: expyear.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+                                       holderName: cardholdername.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
         )
-//                                       ,
-//                                       holderName: holderField.text)
+
         return model
     }
 
@@ -497,7 +546,21 @@ extension ViewController: Initializer {
     }
     
 }
-
+//extension ViewController: UITextFieldDelegate {
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        // Verify all the conditions
+//        if let sdcTextField = textField as? SDCTextField {
+//            return sdcTextField.verifyFields(shouldChangeCharactersIn: range, replacementString: string)
+//        }
+//    }
+//}
 extension ViewController {
     func presentAlert(resut: paymentResult) {
           var displayTitle: String = ""
@@ -527,6 +590,8 @@ extension ViewController {
             displayTitle = "TokenID"
           case .cardOperation:
             displayTitle = "Token Operation"
+         case .transId:
+            displayTitle = "Transaction ID"
         }
           
           let alert = UIAlertController(title: "Alert", message: "Check \(displayTitle) Field", preferredStyle: UIAlertController.Style.alert)

@@ -24,7 +24,7 @@ class ReceptViewController: UIViewController {
         backAction()
     }
     
-    var titles: [String] = ["Amount" , "Response" , "Transaction ID"  , "RESULT" , "Token Code","Card Brand","Masked PAN","Response Message"]
+    var titles = ["Amount" , "Response" , "Transaction ID"  , "Result" , "Token Code","Card Brand","Masked PAN","Response Message"]
     
     var values: [String] = []
     
@@ -33,13 +33,12 @@ class ReceptViewController: UIViewController {
 		// do someting...
       
         self.title = "RECEIPT"
-        
-    
-        
+
         values.append(model?.amount ?? "nil")
 //      values.append(model?.paymentID ?? "nil")
         values.append(model?.responseCode ?? "nil")
         values.append(model?.transID ?? "nil")
+        
         values.append(model?.result ?? "nil")
         values.append(model?.tokenID ?? "")
         values.append(model?.cardBrand ?? "")
@@ -66,6 +65,13 @@ extension ReceptViewController: UITableViewDataSource , UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReceptCell") as! ReceptCell
         let key = titles[indexPath.row]
         let value = values[indexPath.row]
+//        if( value == "nil" || value.isEmpty == true )
+//        {
+//            self.titles.remove(at: indexPath.row )
+//            self.values.remove(at: indexPath.row )
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+        
         cell.setTitle(title: "\(key)  :  \(value)")
         return cell
     }
@@ -73,14 +79,21 @@ extension ReceptViewController: UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    
     func backAction(){
         //print("Back Button Clicked")
         dismiss(animated: true, completion: nil)
     }
     
+ 
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//
+//
+//    }
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        self.dismiss(animated: true, completion: nil)
-//    }  ////this is used to close the page on click 
+//    }  ////this is used to close the page on click
 }
 
 extension ReceptViewController {

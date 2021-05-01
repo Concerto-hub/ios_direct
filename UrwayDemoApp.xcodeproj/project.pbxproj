@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0FFC8BAFA6FF5CA8321D9692 /* Pods_UrwayDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2C0220A5A80C43EDE0525C /* Pods_UrwayDemoApp.framework */; };
+		284E4A0C263AD4460084FC11 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284E4A0B263AD4460084FC11 /* SDCTextField.swift */; };
 		28B278B226148D14005F4753 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B278B126148D14005F4753 /* iOSDropDown.framework */; };
 		28EC0D56261B88CB008274DE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EC0D55261B88CB008274DE /* SystemConfiguration.framework */; };
 		3AC561C02477071D00E85D90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC561BF2477071D00E85D90 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		283CD1EF2628A0C0003E143F /* SwiftPublicIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftPublicIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		284E4A0B263AD4460084FC11 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
 		28B278B126148D14005F4753 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EC0D55261B88CB008274DE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3A871420248382B300FD75E2 /* UrwayDemoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UrwayDemoApp.entitlements; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				3AC561CA2477072100E85D90 /* LaunchScreen.storyboard */,
 				3AC561CD2477072100E85D90 /* Info.plist */,
 				3AC561EB24770DE600E85D90 /* UrwayDemoApp-Bridging-Header.h */,
+				284E4A0B263AD4460084FC11 /* SDCTextField.swift */,
 			);
 			path = UrwayDemoApp;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				3AC561C22477071D00E85D90 /* SceneDelegate.swift in Sources */,
 				3AC562352477DBC700E85D90 /* ReceptManager.swift in Sources */,
 				3AC5622E2477DBC700E85D90 /* ReceptConfiguration.swift in Sources */,
+				284E4A0C263AD4460084FC11 /* SDCTextField.swift in Sources */,
 				3AC562312477DBC700E85D90 /* ReceptViewController.swift in Sources */,
 				3AC562322477DBC700E85D90 /* ReceptInteractor.swift in Sources */,
 			);

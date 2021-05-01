@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="118" width="414" height="680"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" misplaced="YES" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="zjK-Fw-ny3">
-                                        <rect key="frame" x="0.0" y="-92" width="414" height="1050"/>
+                                        <rect key="frame" x="0.0" y="-92" width="414" height="1094"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select Action" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6IE-7R-uNa" customClass="DropDown" customModule="iOSDropDown">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
@@ -170,16 +170,16 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ul-5j-Z79" userLabel="cardNumber">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5123450000000008" placeholder="Card Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ul-5j-Z79" userLabel="cardNumber">
                                                 <rect key="frame" x="0.0" y="668" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QEO-Xh-QRs"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jlv-Z9-MJj" userLabel="cvv">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" placeholder="CVV" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jlv-Z9-MJj" userLabel="cvv">
                                                 <rect key="frame" x="0.0" y="712" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
@@ -188,26 +188,35 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="password"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp Month" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BDp-Q1-Nwx" userLabel="expMonth">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="05" placeholder="Exp Month" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BDp-Q1-Nwx" userLabel="expMonth">
                                                 <rect key="frame" x="0.0" y="756" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Aan-om-6UM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp Year" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-cy-f6Q" userLabel="expYear">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2031" placeholder="Exp Year" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-cy-f6Q" userLabel="expYear">
                                                 <rect key="frame" x="0.0" y="800" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="CWN-bn-Kd9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="John Deo" placeholder="Card Holder Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9CL-uw-Osr" userLabel="cardHolderName">
+                                                <rect key="frame" x="0.0" y="844" width="414" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="L7Y-wf-qrU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lx8-6q-ycA">
-                                                <rect key="frame" x="0.0" y="844" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="888" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="WlI-uG-VUt"/>
@@ -216,7 +225,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rZr-HO-ijT">
-                                                <rect key="frame" x="0.0" y="888" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="932" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="KmQ-6W-bbb"/>
@@ -225,7 +234,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yL2-a7-4EY">
-                                                <rect key="frame" x="0.0" y="932" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="976" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="y6j-eR-g7S"/>
@@ -234,7 +243,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="ZipCode" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rut-Rz-4LE">
-                                                <rect key="frame" x="0.0" y="976" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="1020" width="414" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="cQf-ju-Lpo"/>
@@ -251,7 +260,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUl-Zs-cAV">
-                                                <rect key="frame" x="0.0" y="1020" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="1064" width="414" height="30"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-vS-cah">
                                                         <rect key="frame" x="103.5" y="0.0" width="207" height="31"/>
@@ -313,6 +322,7 @@
                         <outlet property="addressField" destination="rZr-HO-ijT" id="btX-Zy-V19"/>
                         <outlet property="amountField" destination="U5d-AK-UcK" id="Vzm-T1-coj"/>
                         <outlet property="cardOperdropDwn" destination="dot-zA-zbh" id="5TV-T2-QvW"/>
+                        <outlet property="cardholdername" destination="9CL-uw-Osr" id="NsB-dJ-ILU"/>
                         <outlet property="cardnumber" destination="4ul-5j-Z79" id="P9O-g8-uzm"/>
                         <outlet property="cityField" destination="Lx8-6q-ycA" id="mko-SB-poK"/>
                         <outlet property="countryField" destination="k78-Wk-Tha" id="gpn-Fg-z2j"/>
@@ -329,6 +339,7 @@
                         <outlet property="tockenField" destination="wgn-tI-Ml8" id="LCZ-jq-0sv"/>
                         <outlet property="topsegmentController" destination="Nfb-dS-0s9" id="tei-L1-tOu"/>
                         <outlet property="trackIDField" destination="6yO-rf-OKm" id="kKV-69-GGm"/>
+                        <outlet property="transId" destination="lnl-PX-X5r" id="E89-S4-gsZ"/>
                         <outlet property="utf1" destination="u9v-17-zb9" id="YjC-xm-BtU"/>
                         <outlet property="utf2" destination="Xpj-zH-giq" id="OYn-xt-okT"/>
                         <outlet property="utf3" destination="aoy-RS-had" id="Chy-vS-c8u"/>
@@ -345,14 +356,17 @@
         <scene sceneID="Red-a3-EOG">
             <objects>
                 <viewController storyboardIdentifier="ReceptViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zm2-qy-BBC" customClass="ReceptViewController" customModule="UrwayDemoApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="53b-GJ-TFg">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="53b-GJ-TFg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-2W-52h">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-2W-52h">
                                 <rect key="frame" x="0.0" y="118" width="414" height="500"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="TIf-qd-8oa"/>
+                                </constraints>
                                 <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="UaC-ag-XTz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -366,10 +380,10 @@
                         <viewLayoutGuide key="safeArea" id="BBH-vX-sGY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oRA-2W-52h" firstAttribute="leading" secondItem="BBH-vX-sGY" secondAttribute="leading" id="Yxq-d4-T9B"/>
+                            <constraint firstItem="oRA-2W-52h" firstAttribute="leading" secondItem="BBH-vX-sGY" secondAttribute="leading" constant="10" id="Yxq-d4-T9B"/>
                             <constraint firstItem="oRA-2W-52h" firstAttribute="top" secondItem="BBH-vX-sGY" secondAttribute="top" id="fgx-rh-8rA"/>
                             <constraint firstItem="BBH-vX-sGY" firstAttribute="bottom" secondItem="oRA-2W-52h" secondAttribute="bottom" id="gYd-Ie-b4f"/>
-                            <constraint firstItem="BBH-vX-sGY" firstAttribute="trailing" secondItem="oRA-2W-52h" secondAttribute="trailing" id="gun-XI-20V"/>
+                            <constraint firstItem="BBH-vX-sGY" firstAttribute="trailing" secondItem="oRA-2W-52h" secondAttribute="trailing" constant="10" id="gun-XI-20V"/>
                         </constraints>
                     </view>
                     <connections>

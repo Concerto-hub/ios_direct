@@ -14,25 +14,9 @@
             filePath = "Pods/Urway/Urway/native/Urway/PaymentController/Worker/PaymentInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "PaymentInteractor"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5420A37D-9630-4385-98ED-51037FEE7D2F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/Urway/Urway/native/Urway/PaymentController/Worker/PaymentInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "post(for:)"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "postTranEnq(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
